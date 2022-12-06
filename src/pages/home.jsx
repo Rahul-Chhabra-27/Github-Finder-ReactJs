@@ -1,8 +1,10 @@
+import UserResults from "../components/users/userResults";
+
 const Home = () => {
   return (
-    <div>
-      <h1 className='text-6xl'>Home</h1>
-    </div>
+    <>
+      <UserResults />
+    </>
   );
 };
 export default Home;
