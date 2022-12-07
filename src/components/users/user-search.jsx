@@ -3,13 +3,14 @@ import gitHubContext from "../../context/finder/finder-context";
 
 const UserSearch = () => {
   const [text, setText] = useState("");
-  const { users } = useContext(gitHubContext);
+  const { users, usersFetchedData, clearState } = useContext(gitHubContext);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     if (text === "") alert("Please add something");
     else {
+      usersFetchedData(text);
       setText("");
     }
   };
@@ -39,7 +40,7 @@ const UserSearch = () => {
       </div>
       {users.length > 0 && (
         <div className=''>
-          <button className='btn btn-ghost btn-lg'>Clear</button>
+          <button className='btn btn-ghost btn-lg' onClick={() => clearState()}>Clear</button>
         </div>
       )}
     </div>

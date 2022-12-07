@@ -8,16 +8,21 @@ export const GithubProvider = ({ children }) => {
   
   const { users, loading } = state;
   
-  const usersFetchedData = async () => {
+  const usersFetchedData = async (text) => {
     dispatch({ type:'SET_LOADING' });
-    const response = await fetch(`${process.env.REACT_APP_GITHUB_URL}/users`);
-    const data = await response.json();
+    const params = new URLSearchParams({
+      q : text
+    })
+    const response = await fetch(`${process.env.REACT_APP_GITHUB_URL}/search/users?${params}`);
+    const { items } = await response.json();
 
-    dispatch({ type:'GET_USERS', payload:{ data } });
-    return data;
+    dispatch({ type:'GET_USERS', payload:{ data : items }});
+    return items;
   };
-
-  return <gitHubContext.Provider value={{ users, loading, usersFetchedData }}>
+  const clearState = () => {
+    dispatch({ type:'CLEAR_STATE' })
+  }
+  return <gitHubContext.Provider value={{ users, loading, usersFetchedData, clearState }}>
         {children}
   </gitHubContext.Provider>
 };

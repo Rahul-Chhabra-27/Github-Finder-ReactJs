@@ -7,5 +7,8 @@ const githubReducer = ( state = initialState ,{ type, payload } ) => {
     else if (type === 'SET_LOADING') {
         return { ...state, loading:true };
     }
+    else if (type === 'CLEAR_STATE') {
+        return { ...state, users:[], loading:false };
+    }
 }
 export default githubReducer;
