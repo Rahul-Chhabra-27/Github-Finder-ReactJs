@@ -1,14 +1,16 @@
 import { useState, useContext } from "react";
 import gitHubContext from "../../context/finder/finder-context";
+import AlertContext from "../../context/alert/alert-context";
 
 const UserSearch = () => {
   const [text, setText] = useState("");
   const { users, usersFetchedData, clearState } = useContext(gitHubContext);
+  const { setAlert } = useContext(AlertContext);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (text === "") alert("Please add something");
+    if (text === "") setAlert("Please add something", "error");
     else {
       usersFetchedData(text);
       setText("");

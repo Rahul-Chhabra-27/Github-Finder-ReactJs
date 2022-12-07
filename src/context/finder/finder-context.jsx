@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import githubReducer, { initialState } from "./github-reducer";
+import githubReducer, { initialState } from "./finder-reducer";
 
 const gitHubContext = createContext({ users:[], loading:false, usersFetchedData:() => {} });
 
