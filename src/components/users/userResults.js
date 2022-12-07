@@ -1,17 +1,10 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import gitHubContext from "../../context/finder/finder-context";
 import Spinner from "../ui/spinner";
 import User from './user-component';
 
 const UserResults = () => {
-  const { users, loading, usersFetchedData } = useContext(gitHubContext);
-  useEffect(() => {
-    try {
-      usersFetchedData();
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  const { users, loading } = useContext(gitHubContext);
 
   if(loading) return <Spinner />
   return (
